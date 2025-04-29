@@ -12,7 +12,6 @@ class Card(db.Model):
     activated_at = db.Column(db.DateTime, nullable=True)
     expiry_date = db.Column(db.DateTime, nullable=True)
     card_type = db.Column(db.String(25), nullable=True)
-    card_last_digits = db.Column(db.string(20), nullable=True)
     card_network = db.Column(db.String(20),nullable=True)
     card_variant = db.Column(db.String(20),nullable=True)
 

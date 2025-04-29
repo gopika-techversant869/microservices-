@@ -7,7 +7,8 @@ class QueueService:
 
     def publish_wallet_creation(self,payload):
         try:
-            connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+            connection = pika.BlockingConnection(pika.ConnectionParameters('192.168.1.76'))
+
             channel = connection.channel()
 
             channel.queue_declare(queue='wallet_creation', durable=True)
@@ -18,7 +19,7 @@ class QueueService:
                 routing_key='wallet_creation',
                 body=message,
                 properties=pika.BasicProperties(
-                    delivery_mode=2  # make message persistent
+                    delivery_mode=2  
                 )
             )
             logging.info(f"Wallet creation request published: {message}")

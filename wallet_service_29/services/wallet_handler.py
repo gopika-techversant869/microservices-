@@ -1,0 +1,43 @@
+import wallet_pb2, wallet_pb2_grpc
+from db.models import Wallet
+from datetime import datetime
+from db.db_config import db
+import grpc
+
+class WalletService(wallet_pb2_grpc.WalletServiceServicer):
+
+    def CreateWallet(self, request, context):
+
+        try:
+            
+            existing_wallet = db.session.query(Wallet).filter_by(user_id=request.user_id).first()
+            if existing_wallet:
+                return wallet_pb2.WalletResponse(
+                    wallet_id=existing_wallet.id,
+                    status="already_exists"
+                )
+            new_wallet = Wallet(
+                user_id=request.user_id,
+                card_id=request.card_id,
+                status = "active",
+                created_at=datetime.utcnow(),
+                activated_at=datetime.utcnow()
+            )
+
+            return wallet_pb2.WalletResponse(
+                wallet_id=new_wallet.id,
+                status="created"
+            )
+        except Exception as e:
+            db.rollback()
+            context.set_details(str(e))
+            context.set_code(grpc.StatusCode.INTERNAL)
+            return wallet_pb2.WalletResponse()
+        
+        # except Exception as e:
+        #     session.rollback()
+        #     context.set_details(str(e))
+        #     context.set_code(grpc.StatusCode.INTERNAL)
+        #     return wallet_pb2.WalletResponse()
+        # finally:
+        #     session.close()
