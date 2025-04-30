@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0cwallet.proto\x12\x06wallet\"1\n\rWalletRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x0f\n\x07\x63\x61rd_id\x18\x02 \x01(\t\"3\n\x0eWalletResponse\x12\x11\n\twallet_id\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\t2N\n\rWalletService\x12=\n\x0c\x43reateWallet\x12\x15.wallet.WalletRequest\x1a\x16.wallet.WalletResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0cwallet.proto\x12\x06wallet\"5\n\rWalletRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63\x61rd_number\x18\x02 \x01(\t\"3\n\x0eWalletResponse\x12\x11\n\twallet_id\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\t2N\n\rWalletService\x12=\n\x0c\x43reateWallet\x12\x15.wallet.WalletRequest\x1a\x16.wallet.WalletResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -32,9 +32,9 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'wallet_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
   _globals['_WALLETREQUEST']._serialized_start=24
-  _globals['_WALLETREQUEST']._serialized_end=73
-  _globals['_WALLETRESPONSE']._serialized_start=75
-  _globals['_WALLETRESPONSE']._serialized_end=126
-  _globals['_WALLETSERVICE']._serialized_start=128
-  _globals['_WALLETSERVICE']._serialized_end=206
+  _globals['_WALLETREQUEST']._serialized_end=77
+  _globals['_WALLETRESPONSE']._serialized_start=79
+  _globals['_WALLETRESPONSE']._serialized_end=130
+  _globals['_WALLETSERVICE']._serialized_start=132
+  _globals['_WALLETSERVICE']._serialized_end=210
 # @@protoc_insertion_point(module_scope)

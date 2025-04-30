@@ -40,37 +40,29 @@ class CardServiceImpl:
         #     "card_variant": request.get('card_variant'),
         #     "user_id": request.get('user_id')
         # }
-        try:
-            new_user = Card(card_number = request.get('card_number'),
-                            status = "pending",
-                            expiry_date = request.get('expiry_date'),
-                            created_at = datetime.utcnow(),
-                            card_type =  request.get('card_type'),
-                            card_network =  request.get('card_network'),
-                            card_variant =  request.get('card_variant'),
-                            # Add and commit the new user
-            user_id =  request.get('user_id') )
+    
+        # new_user = Card(card_number = request.get('card_number'),
+        #                 status = "pending",
+        #                 expiry_date = request.get('expiry_date'),
+        #                 created_at = datetime.utcnow(),
+        #                 card_type =  request.get('card_type'),
+        #                 card_network =  request.get('card_network'),
+        #                 card_variant =  request.get('card_variant'),
+        #                 # Add and commit the new user
+        # user_id =  request.get('user_id') )
 
-            db.add(new_user)
-            db.commit()
-        except Exception as e:
-            print("eeee",e)
-
-        # card_details = self.db_obj.create_record(Card,card_data)
-        # print("card details:::::::::::::",card_details)
+        # db.session.add(new_user)
+        # db.session.commit()
         
+        try:
+            print("wallet creation")
 
-        # wallet_payload = {
-        #     "user_id": request.get('user_id'),
-        #     "card_id": new_user.id,
-        #     "card_number": request.get('card_number')
-        # }
+            wallet = create_wallet(str(request.get('user_id')), str(request.get('card_number')))
+            
+        except Exception as e:
+            print("exception", e)
+            return jsonify({"error": "Failed to create wallet"}), 500
 
-        # self.queue.publish_wallet_creation(wallet_payload)
-        wallet = create_wallet(request.get('user_id'), new_user.id)
-        print("wallet:::::::::::::", wallet)
-
-
-        return jsonify({"message": "Card created and wallet creation triggered", "card_id": new_user.id}), 201
+        return jsonify({"message": "Card created and wallet creation triggered", "card_id": ""}), 201
 
 

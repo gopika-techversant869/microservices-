@@ -4,11 +4,12 @@ package wallet;
 
 service WalletService {
   rpc CreateWallet(WalletRequest) returns (WalletResponse);
+  rpc 
 }
 
 message WalletRequest {
   string user_id = 1;
-  string card_id = 2;
+  string card_number = 2;
 }
 
 message WalletResponse {

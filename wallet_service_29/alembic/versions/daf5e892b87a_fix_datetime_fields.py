@@ -24,12 +24,12 @@ def upgrade() -> None:
     op.create_table('wallets',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.String(length=100), nullable=False),
-    sa.Column('card_id', sa.String(length=16), nullable=False),
+    sa.Column('card_number', sa.String(length=16), nullable=False),
     sa.Column('status', sa.String(length=20), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('activated_at', sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('card_id')
+    sa.UniqueConstraint('card_number')
     )
     # ### end Alembic commands ###
 

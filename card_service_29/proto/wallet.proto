@@ -8,7 +8,7 @@ service WalletService {
 
 message WalletRequest {
   string user_id = 1;
-  string card_id = 2;
+  string card_number = 2;
 }
 
 message WalletResponse {
