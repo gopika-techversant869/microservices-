@@ -47,3 +47,11 @@ class WalletService(wallet_pb2_grpc.WalletServiceServicer):
         #     return wallet_pb2.WalletResponse()
         # finally:
         #     session.close()
+
+class TestService(wallet_pb2_grpc.TestServiceServicer):
+    def test(self, request, context):
+        print("request:::::::::::::::::::::::::::", type(request))
+      
+        return wallet_pb2.TestResponse(
+           message = "Its a test function"
+        )

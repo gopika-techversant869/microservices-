@@ -19,3 +19,11 @@ def create_wallet(user_id, card_id):
         )
         res = stub.CreateWallet(req)
     return res.wallet_id, res.status
+
+
+def test(id):
+    with grpc.insecure_channel("192.168.1.98:50051") as channel:
+        stub = wallet_pb2_grpc.Tes(channel)
+        req = wallet_pb2.WalletRequest(user_id=id)
+        res = stub.CreateWallet(req)
+    return res.wallet_id, res.status

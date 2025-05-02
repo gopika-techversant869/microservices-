@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
 from app.services.card_service import CardServiceImpl
+from app.services.card_service import TestService
 
 card_bp = Blueprint('card', __name__)
 
@@ -9,3 +10,10 @@ def create_card_route():
     print(":data:::::::::::::::::::::::::::::::::::",data)
     card_obj = CardServiceImpl()
     return card_obj.card_creation(data)
+# return jsonify({"message": "Card created and wallet creation triggered", "card_id": ""}), 201
+
+@card_bp.route('/test', methods=['GET'])
+def test_route():
+    
+    test_obj = TestService()
+    return test_obj.test_service()

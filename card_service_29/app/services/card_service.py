@@ -3,6 +3,7 @@ from datetime import datetime
 import logging
 from flask import jsonify
 from app.client_service import create_wallet
+from app.client_service import test
 from app.db.models import User
 from app.db.models  import Card
 from app.db.db_handler import db
@@ -66,3 +67,15 @@ class CardServiceImpl:
         return jsonify({"message": "Card created and wallet creation triggered", "card_id": ""}), 201
 
 
+class TestService:
+
+    def test_service(self):
+        try:
+            id = "1"
+            resp = test(str(id))
+            print("test :::::::::::::::::::::",resp)
+            return jsonify({"message": resp}), 201
+        
+        except Exception as e:
+            print("exception", e)
+            return jsonify({"error": "Failed to test"}), 500

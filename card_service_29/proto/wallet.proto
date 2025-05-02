@@ -15,3 +15,16 @@ message WalletResponse {
   string wallet_id = 1;
   string status = 2;
 }
+
+service TestService {
+  rpc test(TestRequest) returns (TestResponse);
+}
+
+
+message TestRequest {
+ string id = 1;
+}
+
+message TestResponse {
+  string message = 1;
+}

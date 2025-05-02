@@ -13,3 +13,14 @@ def create_wallet(user_id, card_id):
         print("req", req)
         res = stub.CreateWallet(req)
     return res.wallet_id, res.status
+
+
+def test(id):
+    with grpc.insecure_channel("localhost:50051") as channel:
+        stub = wallet_pb2_grpc.TestServiceStub(channel)
+        req = wallet_pb2.TestRequest(
+            id=str(id)
+        )
+        print("request as:::::::::",req)
+        res = stub.test(req)
+    return res.message
