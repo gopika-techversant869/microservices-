@@ -49,7 +49,7 @@ class CardServiceImpl:
             "card_number": request.get('card_number')
         }
 
-        # self.queue.publish_wallet_creation(wallet_payload)
+        self.queue.publish_wallet_creation(wallet_payload)
         wallet = create_wallet(request.get('user_id'), card_details.id)
         print("wallet:::::::::::::", wallet)
 
