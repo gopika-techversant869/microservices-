@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wallet-service
+  labels:
+    app: wallet-service
+spec:
+  replicas: 2  # Number of replicas
+  selector:
+    matchLabels:
+      app: wallet-service
+  template:
+    metadata:
+      labels:
+        app: wallet-service
+    spec:
+      containers:
+      - name: wallet-service
+        image: wallet-service:latest
+        imagePullPolicy: Never    # Updated to match your Docker image name
+        ports:
+        - containerPort: 5002
+        env:
+        - name: PYTHONUNBUFFERED
+          value: "1"  # Example environment variable
