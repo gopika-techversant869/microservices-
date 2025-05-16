@@ -3,3 +3,5 @@ grpcio
 grpcio-tools
 psycopg2-binary
 SQLAlchemy
+flask_sqlalchemy
+Flask-Migrate

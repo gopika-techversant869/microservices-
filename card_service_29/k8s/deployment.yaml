@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: card-deployment
+  labels:
+    app: card
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: card
+  template: # TO BE DISCUSSED
+    metadata:
+      labels:
+        app: card
+    spec:
+      containers:
+        - name: card
+          image: card:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5000

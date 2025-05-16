@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 5000
 
 # Define the command to run the application
-CMD ["python", "wsgi.py"]    app.run(debug=True, host="0.0.0.0", port=5000)
+CMD ["python", "wsgi.py"]    

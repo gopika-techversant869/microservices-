@@ -7,6 +7,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-EXPOSE 5002
+# Expose both HTTP and gRPC ports
+EXPOSE 5002 50051
 
+# Default command (can be overridden in Kubernetes)
 CMD ["python", "http_adapter.py"]

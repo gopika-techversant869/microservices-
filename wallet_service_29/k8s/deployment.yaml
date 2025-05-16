@@ -5,7 +5,7 @@ metadata:
   labels:
     app: wallet-service
 spec:
-  replicas: 2  # Number of replicas
+  replicas: 1  # Single pod with two containers
   selector:
     matchLabels:
       app: wallet-service
@@ -15,11 +15,16 @@ spec:
         app: wallet-service
     spec:
       containers:
-      - name: wallet-service
-        image: wallet-service:latest
-        imagePullPolicy: Never    # Updated to match your Docker image name
+      - name: grpc-server
+        image: wallet_service:latest  # Use the same Docker image
+        imagePullPolicy: Never
+        command: ["python", "wallet_server.py"]  # Run the gRPC server
         ports:
-        - containerPort: 5002
-        env:
-        - name: PYTHONUNBUFFERED
-          value: "1"  # Example environment variable
+        - containerPort: 50051  # gRPC server port
+
+      - name: http-adapter
+        image: wallet_service:latest 
+        imagePullPolicy: Never  # Use the same Docker image
+        command: ["python", "http_adapter.py"]  # Run the HTTP adapter
+        ports:
+        - containerPort: 5002  # HTTP adapter port
