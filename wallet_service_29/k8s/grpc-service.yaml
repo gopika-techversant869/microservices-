@@ -1,14 +1,23 @@
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: wallet-service
+# spec:
+#   type: ClusterIP
+#   ports:
+#   - port: 50051
+#     targetPort: 50051
+#   selector:
+#     app: wallet-service
+
 apiVersion: v1
 kind: Service
 metadata:
-  name: grpc-service
-  labels:
-    app: wallet-service
+  name: wallet-service
 spec:
-  type: NodePort  # Use NodePort for Minikube
-  ports:
-  - port: 50051
-    targetPort: 50051
-    nodePort: 30051  # Optional: Fixed NodePort for gRPC
   selector:
     app: wallet-service
+  ports:
+    - protocol: TCP
+      port: 50051
+      targetPort: 50051

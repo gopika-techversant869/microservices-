@@ -14,6 +14,6 @@ def create_card_route():
 
 @card_bp.route('/test', methods=['GET'])
 def test_route():
-    
+    print("test route")
     test_obj = TestService()
     return test_obj.test_service()

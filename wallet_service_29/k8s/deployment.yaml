@@ -16,11 +16,12 @@ spec:
     spec:
       containers:
       - name: grpc-server
-        image: wallet_service:latest  # Use the same Docker image
+        image: wallet_service:latest
         imagePullPolicy: Never
         command: ["python", "wallet_server.py"]  # Run the gRPC server
         ports:
         - containerPort: 50051  # gRPC server port
+        env:
 
       - name: http-adapter
         image: wallet_service:latest 
@@ -28,3 +29,6 @@ spec:
         command: ["python", "http_adapter.py"]  # Run the HTTP adapter
         ports:
         - containerPort: 5002  # HTTP adapter port
+        env:
+        - name: PYTHONUNBUFFERED
+          value: "1"

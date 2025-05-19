@@ -5,6 +5,7 @@ from services.wallet_handler import WalletService
 from services.wallet_handler import TestService
 
 def serve():
+    print("Starting WalletService server...")
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     wallet_pb2_grpc.add_WalletServiceServicer_to_server(WalletService(), server)
     wallet_pb2_grpc.add_TestServiceServicer_to_server(TestService(), server)
@@ -16,3 +17,5 @@ def serve():
 
 if __name__ == '__main__':
     serve()
+
+

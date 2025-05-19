@@ -20,3 +20,6 @@ spec:
           imagePullPolicy: Never
           ports:
             - containerPort: 5000
+          env:
+          - name: PYTHONUNBUFFERED
+            value: "1"

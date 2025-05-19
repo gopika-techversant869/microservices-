@@ -4,7 +4,7 @@ import wallet_pb2_grpc
 
 
 def create_wallet(user_id, card_id):
-    with grpc.insecure_channel("localhost:50051") as channel:
+    with grpc.insecure_channel("wallet-service:50051") as channel:
         stub = wallet_pb2_grpc.WalletServiceStub(channel)
         req = wallet_pb2.WalletRequest(
             user_id=str(user_id),
@@ -16,7 +16,7 @@ def create_wallet(user_id, card_id):
 
 
 def test(id):
-    with grpc.insecure_channel("localhost:50051") as channel:
+    with grpc.insecure_channel("wallet-service:50051") as channel:
         stub = wallet_pb2_grpc.TestServiceStub(channel)
         req = wallet_pb2.TestRequest(
             id=str(id)
